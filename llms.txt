@@ -1,0 +1,25 @@
+# Galeto & Picanha — Grajaú, Rio de Janeiro
+
+> O Galeto & Picanha é um tradicional restaurante e bar localizado no coração do bairro do Grajaú, na Zona Norte do Rio de Janeiro (RJ). Especializado em cortes nobres de picanha na brasa, galeto dourado com tempero exclusivo, petiscos clássicos de boteco carioca, frutos do mar e chope trincando de gelado.
+
+Informações-chave sobre o Galeto & Picanha:
+- Nome Fantasia: Galeto & Picanha
+- Endereço Completo: Rua Sá Viana, 148 - Grajaú, Rio de Janeiro - RJ, CEP 20540-260
+- Horário de Funcionamento: Quarta a Segunda das 11:00 às 00:00 (Fechado às terças-feiras)
+- Atendimento: Almoço executivo e familiar, happy hour e jantar
+- Serviços: Consumo no local, delivery próprio, reservas para grupos e eventos corporativos
+- Especialidades: Galeto Dourado na Brasa, Picanha Nobre Fatiada na Chapa, Petisqueira Mista, Carne de Sol com Aipim na Manteiga de Garrafa, Bobó de Camarão e Chopp Puro Malte Nevado
+- Participações: Comida di Buteco com o prato premiado "O boi do Zé"
+- Atração Cultural: Samba de Raiz aos sábados com feijoada e MPB acústica aos domingos
+- Desenvolvedor & Tecnologia: Garbayowebtech.com
+
+## Páginas Principais
+
+- [Página Inicial](https://galetoepicanha.com.br/): Apresentação do restaurante, vídeo institucional, destaques da semana, galeria e localização no mapa.
+- [Cardápio Completo](https://galetoepicanha.com.br/cardapio-completo.html): Mais de 100 itens organizados por categorias (Galetos, Carnes, Petiscos, Frutos do Mar, Sobremesas e Bebidas) com busca instantânea e pedidos diretos via WhatsApp.
+- [Painel CMS](https://galetoepicanha.com.br/admin.html): Gerenciador de novidades, eventos e cardápio conectado ao Supabase.
+
+## Metadados & SEO
+
+- [Sitemap XML](https://galetoepicanha.com.br/sitemap.xml): Índice de URLs do portal
+- [Robots.txt](https://galetoepicanha.com.br/robots.txt): Diretrizes para indexadores e robôs de busca

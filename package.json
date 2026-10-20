@@ -1,0 +1,26 @@
+{
+  "name": "galeto-picanha",
+  "version": "1.0.0",
+  "description": "Website oficial e CMS do Restaurante Galeto & Picanha - Grajaú, RJ",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "build": "echo 'Build completed. Static files served directly from repository.'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garbayowebtech/galeto_picanha.git"
+  },
+  "keywords": [
+    "galeto",
+    "picanha",
+    "grajau",
+    "restaurante",
+    "rio-de-janeiro"
+  ],
+  "author": "Garbayowebtech",
+  "license": "ISC",
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

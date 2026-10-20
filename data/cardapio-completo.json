@@ -1,0 +1,272 @@
+{
+  "restaurante": "Galeto & Picanha",
+  "endereco": "Rua Sá Viana 148, Grajaú - Rio de Janeiro - RJ",
+  "telefone_whatsapp": "(21) 95926-1848",
+  "horario": "Abertos todos os dias das 11h às 00h",
+  "total_itens": 133,
+  "categorias": [
+    {
+      "id": "entradas",
+      "nome": "Entradas",
+      "icone": "🥟",
+      "itens": [
+        { "nome": "Bolinho de Bacalhau", "preco": "R$ 7,90", "unidade": "unidade" },
+        { "nome": "Caldinho de Feijão", "preco": "R$ 10,90" },
+        { "nome": "Espeto de Queijo Coalho", "preco": "R$ 22,90", "foto": "assets/imagens/1.webp" },
+        { "nome": "Croquete de Carne", "preco": "R$ 8,00", "unidade": "unidade" },
+        { "nome": "Croquete de Provolone", "preco": "R$ 8,00", "unidade": "unidade" },
+        { "nome": "Torresmo Crocante", "preco": "R$ 32,90" }
+      ]
+    },
+    {
+      "id": "pasteis",
+      "nome": "Pastéis",
+      "icone": "🥟",
+      "itens": [
+        { "nome": "Pastel de Carne", "preco": "R$ 8,90" },
+        { "nome": "Pastel de Queijo", "preco": "R$ 8,90" },
+        { "nome": "Pastel de Camarão", "preco": "R$ 10,90" },
+        { "nome": "Pastel de Carne Seca", "preco": "R$ 10,90" },
+        { "nome": "Pastel de Carne de Sol com Coalho", "preco": "R$ 10,90" },
+        { "nome": "Pastel de Chocolate", "preco": "R$ 10,90" }
+      ]
+    },
+    {
+      "id": "petiscos",
+      "nome": "Petiscos de Botequim",
+      "icone": "🍟",
+      "itens": [
+        { "nome": "Batata Frita Tradicional", "preco": "R$ 22,90" },
+        { "nome": "Batata Portuguesa", "preco": "R$ 29,90" },
+        { "nome": "Bolinho de Bacalhau - Porção", "preco": "R$ 48,90" },
+        { "nome": "Pastéis Mistos - Porção / 6 unidades", "preco": "R$ 57,90" },
+        { "nome": "Salaminho Aperitivo", "preco": "R$ 35,90" },
+        { "nome": "Provolone Simples", "preco": "R$ 49,90" },
+        { "nome": "Provolone à Milanesa", "preco": "R$ 59,90" },
+        { "nome": "Batata Grajaú", "preco": "R$ 38,90" },
+        { "nome": "Aipim Grajaú", "preco": "R$ 39,90" },
+        { "nome": "Batata do Chefe", "preco": "R$ 35,90" },
+        { "nome": "Namoradinho", "preco": "R$ 35,90" },
+        { "nome": "Casadinho", "preco": "R$ 56,90" },
+        { "nome": "Frango a Passarinho", "preco": "R$ 50,90" },
+        { "nome": "Costela Suína com Fritas", "preco": "R$ 59,90" },
+        { "nome": "Gurjão de Frango", "preco": "R$ 65,90" },
+        { "nome": "Gurjão de Peixe", "preco": "R$ 72,90" },
+        { "nome": "Carne de Sol com Aipim e Queijo", "preco": "R$ 92,90", "foto": "assets/imagens/6.webp" },
+        { "nome": "Carne Seca com Aipim e Queijo Coalho", "preco": "R$ 92,90" },
+        { "nome": "Contra-Filé Aperitivo com Fritas", "preco": "R$ 88,90" },
+        { "nome": "Picanha Aperitivo com Fritas", "preco": "R$ 92,90", "foto": "assets/imagens/8.webp" },
+        { "nome": "Moela Alcoolizada", "preco": "R$ 51,90" },
+        { "nome": "Petisco do Chefe (Carne de Sol, Carne Seca, Aipim ou Fritas e Queijo Coalho)", "preco": "R$ 92,90" },
+        { "nome": "Tábua Mista (Contra-Filé, Batata Frita, Calabresa e Filé de Frango)", "preco": "R$ 89,00", "foto": "assets/imagens/9.webp" },
+        { "nome": "O boi do Zé (Costela bovina marinada c/ aligot - Comida di Buteco)", "preco": "R$ 35,00", "foto": "assets/cdb/cdb_foto_oficial.jpg" }
+      ]
+    },
+    {
+      "id": "galeto-frango",
+      "nome": "Galeto & Frangos (p/ 2 pessoas)",
+      "icone": "🍗",
+      "observacao": "Guarnição a escolha",
+      "itens": [
+        { "nome": "Galeto Dourado na Brasa Completo", "preco": "R$ 69,90", "serve": "Serve 2 pessoas", "acompanhamentos": "Arroz de brócolis ao alho, batatas rústicas, farofa de ovos e molho à campanha", "foto": "assets/imagens/2.webp" },
+        { "nome": "Frango à Cubana", "preco": "R$ 89,90", "serve": "Serve 2 pessoas" },
+        { "nome": "Filé de Frango à Campanha", "preco": "R$ 79,90", "serve": "Serve 2 pessoas" },
+        { "nome": "Filé de Frango à Milanesa", "preco": "R$ 80,90", "serve": "Serve 2 pessoas" },
+        { "nome": "Frango à Parmegiana", "preco": "R$ 82,00", "serve": "Serve 2 pessoas" },
+        { "nome": "Frango à Francesa", "preco": "R$ 79,00", "serve": "Serve 2 pessoas" },
+        { "nome": "Strogonoff de Frango", "preco": "R$ 79,90", "serve": "Serve 2 pessoas" }
+      ]
+    },
+    {
+      "id": "suinos",
+      "nome": "Suínos (p/ 2 pessoas)",
+      "icone": "🍖",
+      "itens": [
+        { "nome": "Lombinho à Mineira", "preco": "R$ 72,90", "serve": "Serve 2 pessoas" },
+        { "nome": "Carré à Mineira (Arroz, tutu e couve)", "preco": "R$ 69,90", "serve": "Serve 2 pessoas" }
+      ]
+    },
+    {
+      "id": "picanha",
+      "nome": "Picanha na Chapa / Brasa",
+      "icone": "🥩",
+      "observacao": "Guarnição a escolha",
+      "itens": [
+        { "nome": "Picanha à Brasileira (p/ 2 pessoas)", "preco": "R$ 160,90", "serve": "Serve 2 pessoas", "foto": "assets/imagens/8.webp" },
+        { "nome": "Picanha Nordestina (p/ 2 pessoas)", "preco": "R$ 179,50", "serve": "Serve 2 pessoas" },
+        { "nome": "Picanha à Piamontese (p/ 2 pessoas)", "preco": "R$ 179,90", "serve": "Serve 2 pessoas" },
+        { "nome": "Picanha à Brasileira (p/ 3 pessoas)", "preco": "R$ 199,90", "serve": "Serve 3 pessoas" },
+        { "nome": "Picanha Nordestina (p/ 3 pessoas)", "preco": "R$ 220,50", "serve": "Serve 3 pessoas" },
+        { "nome": "Picanha à Gaúcha (p/ 3 pessoas)", "preco": "R$ 210,90", "serve": "Serve 3 pessoas" },
+        { "nome": "Picanha à Brasileira (p/ 4 pessoas)", "preco": "R$ 240,90", "serve": "Serve 4 pessoas" },
+        { "nome": "Picanha Nordestina (p/ 4 pessoas)", "preco": "R$ 269,50", "serve": "Serve 4 pessoas" },
+        { "nome": "Picanha à Gaúcha (p/ 4 pessoas)", "preco": "R$ 259,90", "serve": "Serve 4 pessoas" }
+      ]
+    },
+    {
+      "id": "contra-file",
+      "nome": "Contra-Filé & Churrascos",
+      "icone": "🥩",
+      "observacao": "Guarnição a escolha",
+      "itens": [
+        { "nome": "Contra-Filé à Campanha (p/ 2 pessoas)", "preco": "R$ 109,90", "serve": "Serve 2 pessoas" },
+        { "nome": "Contra-Filé à Gaúcha (p/ 2 pessoas)", "preco": "R$ 119,90", "serve": "Serve 2 pessoas" },
+        { "nome": "Contra-Filé à Francesa (p/ 2 pessoas)", "preco": "R$ 109,90", "serve": "Serve 2 pessoas" },
+        { "nome": "Contra-Filé à Parmegiana (p/ 2 pessoas)", "preco": "R$ 120,90", "serve": "Serve 2 pessoas" },
+        { "nome": "Contra-Filé Nordestino com Queijo Coalho (p/ 2 pessoas)", "preco": "R$ 120,90", "serve": "Serve 2 pessoas" },
+        { "nome": "Churrasco Misto (Carne, frango, linguiça e carré - p/ 2)", "preco": "R$ 139,90", "serve": "Serve 2 pessoas" },
+        { "nome": "Feijoada Completa Tradicional", "preco": "R$ 90,00", "serve": "Serve 2 pessoas" },
+        { "nome": "Churrasco Misto (p/ 3 pessoas)", "preco": "R$ 180,90", "serve": "Serve 3 pessoas" },
+        { "nome": "Contra-Filé à Campanha (p/ 3 pessoas)", "preco": "R$ 155,50", "serve": "Serve 3 pessoas" },
+        { "nome": "Contra-Filé Nordestino (p/ 3 pessoas)", "preco": "R$ 180,90", "serve": "Serve 3 pessoas" },
+        { "nome": "Contra-Filé à Gaúcha (p/ 3 pessoas)", "preco": "R$ 165,90", "serve": "Serve 3 pessoas" },
+        { "nome": "Churrasco Misto (p/ 4 pessoas)", "preco": "R$ 220,90", "serve": "Serve 4 pessoas" },
+        { "nome": "Churrasco da Casa (p/ 4 pessoas)", "preco": "R$ 199,90", "serve": "Serve 4 pessoas" },
+        { "nome": "Churrasco à Gaúcha (p/ 4 pessoas)", "preco": "R$ 210,90", "serve": "Serve 4 pessoas" },
+        { "nome": "Churrasco Nordestino (Baião de dois e aipim - p/ 4)", "preco": "R$ 220,90", "serve": "Serve 4 pessoas" }
+      ]
+    },
+    {
+      "id": "peixes",
+      "nome": "Peixes & Frutos do Mar (p/ 2 pessoas)",
+      "icone": "🐟",
+      "itens": [
+        { "nome": "Filé de Tilápia Grelhado", "preco": "R$ 89,90", "serve": "Serve 2 pessoas" },
+        { "nome": "Filé de Peixe ao Molho de Camarão", "preco": "R$ 100,90", "serve": "Serve 2 pessoas" },
+        { "nome": "Moqueca de Camarão na Panela de Barro", "preco": "R$ 105,90", "serve": "Serve 2 pessoas", "foto": "assets/imagens/5.webp" },
+        { "nome": "Risoto de Camarão Especial", "preco": "R$ 105,90", "serve": "Serve 2 pessoas", "foto": "assets/imagens/10.webp" },
+        { "nome": "Tilápia Frita em Posta Crocante", "preco": "R$ 90,90", "serve": "Serve 2 pessoas", "foto": "assets/imagens/11.webp" },
+        { "nome": "Camarão à Milanesa com Molho Tártaro", "preco": "R$ 102,90", "serve": "Serve 2 pessoas" },
+        { "nome": "Strogonoff de Camarão", "preco": "R$ 102,90", "serve": "Serve 2 pessoas" }
+      ]
+    },
+    {
+      "id": "espetos",
+      "nome": "Espetos na Brasa",
+      "icone": "🍢",
+      "itens": [
+        { "nome": "Espeto Misto", "preco": "R$ 18,90" },
+        { "nome": "Espeto de Carne", "preco": "R$ 19,90" },
+        { "nome": "Espeto de Frango", "preco": "R$ 16,90" },
+        { "nome": "Espeto de Queijo Coalho", "preco": "R$ 22,90", "foto": "assets/imagens/1.webp" }
+      ]
+    },
+    {
+      "id": "sanduiches",
+      "nome": "Sanduíches Tradicionais",
+      "icone": "🥪",
+      "itens": [
+        { "nome": "Misto Quente", "preco": "R$ 12,90" },
+        { "nome": "Queijo Quente", "preco": "R$ 11,90" },
+        { "nome": "Sanduíche de Carne Assada", "preco": "R$ 20,90" },
+        { "nome": "Frango Grelhado com Queijo", "preco": "R$ 18,90" },
+        { "nome": "Linguiça com Queijo", "preco": "R$ 17,90" },
+        { "nome": "Contra-Filé com Queijo e Abacaxi", "preco": "R$ 22,90" }
+      ]
+    },
+    {
+      "id": "guarnicoes",
+      "nome": "Guarnições & Arroz",
+      "icone": "🍚",
+      "itens": [
+        { "nome": "Purê de Batata", "preco": "R$ 22,90" },
+        { "nome": "Batata Frita", "preco": "R$ 22,90" },
+        { "nome": "Salada de Legumes", "preco": "R$ 19,90" },
+        { "nome": "Salada de Maionese", "preco": "R$ 19,90" },
+        { "nome": "Batata Corada", "preco": "R$ 22,90" },
+        { "nome": "Porção de Feijão", "preco": "R$ 16,90" },
+        { "nome": "Porção de Aipim", "preco": "R$ 20,90" },
+        { "nome": "Vinagrete Especial", "preco": "R$ 11,90" },
+        { "nome": "Farofa de Ovos", "preco": "R$ 18,90" },
+        { "nome": "Farofa de Ovos com Banana", "preco": "R$ 22,90" },
+        { "nome": "Salada Verde", "preco": "R$ 19,90" },
+        { "nome": "Arroz à la Grega", "preco": "R$ 22,90" },
+        { "nome": "Arroz de Brócolis", "preco": "R$ 20,90" },
+        { "nome": "Arroz Branco Soltinho", "preco": "R$ 18,90" },
+        { "nome": "Baião de Dois", "preco": "R$ 22,90" },
+        { "nome": "Arroz Maluco", "preco": "R$ 24,90" },
+        { "nome": "Arroz à Piamontese", "preco": "R$ 28,90" },
+        { "nome": "Guarnição à Francesa", "preco": "R$ 30,90" }
+      ]
+    },
+    {
+      "id": "sopas",
+      "nome": "Sopas & Caldos",
+      "icone": "🍲",
+      "itens": [
+        { "nome": "Mocotó Tradicional", "preco": "R$ 24,90" },
+        { "nome": "Caldo Verde com Calabresa", "preco": "R$ 21,90" },
+        { "nome": "Sopa de Legumes Frescos", "preco": "R$ 24,90" },
+        { "nome": "Canja de Galinha Carioca", "preco": "R$ 21,90" },
+        { "nome": "Feijão Amigo Temperado", "preco": "R$ 15,90" }
+      ]
+    },
+    {
+      "id": "sobremesas",
+      "nome": "Sobremesas",
+      "icone": "🍨",
+      "itens": [
+        { "nome": "Banana Split", "preco": "R$ 27,90" },
+        { "nome": "Brownie com Sorvete", "preco": "R$ 27,90" }
+      ]
+    },
+    {
+      "id": "cervejas",
+      "nome": "Cervejas Geladas",
+      "icone": "🍺",
+      "itens": [
+        { "nome": "Brahma 600ml", "preco": "R$ 13,90" },
+        { "nome": "Antarctica 600ml", "preco": "R$ 13,90" },
+        { "nome": "Amstel 600ml", "preco": "R$ 13,90" },
+        { "nome": "Heineken 600ml", "preco": "R$ 18,90" },
+        { "nome": "Stella Artois 600ml", "preco": "R$ 16,90" },
+        { "nome": "Spaten 600ml", "preco": "R$ 16,90" },
+        { "nome": "Original 600ml", "preco": "R$ 14,90" },
+        { "nome": "Heineken Long Neck", "preco": "R$ 12,00" },
+        { "nome": "Stella Artois Long Neck", "preco": "R$ 11,00" },
+        { "nome": "Budweiser Long Neck", "preco": "R$ 11,00" },
+        { "nome": "Balde Puro Malte Trincando no Gelo", "preco": "A partir de R$ 54,90", "foto": "assets/imagens/4.webp" }
+      ]
+    },
+    {
+      "id": "bebidas",
+      "nome": "Bebidas não Alcoólicas",
+      "icone": "🥤",
+      "itens": [
+        { "nome": "Coca-Cola 2 Litros", "preco": "R$ 18,90" },
+        { "nome": "Guaraná Antarctica 2 Litros", "preco": "R$ 16,00" },
+        { "nome": "Coca-Cola 600ml", "preco": "R$ 11,90" },
+        { "nome": "Guaraná Antarctica 600ml", "preco": "R$ 10,90" },
+        { "nome": "Coca-Cola Lata", "preco": "R$ 8,00" },
+        { "nome": "Coca-Cola KS (Garrafinha de Vidro)", "preco": "R$ 8,00" },
+        { "nome": "Guaraviton", "preco": "R$ 8,00" },
+        { "nome": "H2OH!", "preco": "R$ 8,00" },
+        { "nome": "Guaravita", "preco": "R$ 4,00" },
+        { "nome": "Sucos Naturais (Diversos sabores)", "preco": "R$ 11,00", "foto": "assets/imagens/7.webp" },
+        { "nome": "Suco Jarra Pequena", "preco": "R$ 29,90" },
+        { "nome": "Suco Jarra Grande", "preco": "R$ 49,90" },
+        { "nome": "Matte Leão Gelado", "preco": "R$ 8,50" },
+        { "nome": "Água sem Gás", "preco": "R$ 4,90" },
+        { "nome": "Água com Gás", "preco": "R$ 5,90" }
+      ]
+    },
+    {
+      "id": "cadracas-doses",
+      "nome": "Cachaças, Doses & Drinks",
+      "icone": "🥃",
+      "itens": [
+        { "nome": "Cachaça Salinas", "preco": "R$ 12,90" },
+        { "nome": "Cachaça Seleta", "preco": "R$ 12,90" },
+        { "nome": "Cachaça Ypióca", "preco": "R$ 8,90" },
+        { "nome": "Campari (Dose)", "preco": "R$ 14,90" },
+        { "nome": "Vodka Smirnoff (Dose)", "preco": "R$ 12,90" },
+        { "nome": "Vodka Absolut (Dose)", "preco": "R$ 18,90" },
+        { "nome": "Whisky Red Label (Dose)", "preco": "R$ 22,90" },
+        { "nome": "Whisky Black Label (Dose)", "preco": "R$ 28,90" },
+        { "nome": "Whisky Old Parr (Dose)", "preco": "R$ 25,90" },
+        { "nome": "Energético Red Bull", "preco": "R$ 19,90" },
+        { "nome": "Moscow Mule na Caneca de Cobre", "preco": "R$ 32,90", "foto": "assets/imagens/3.webp" }
+      ]
+    }
+  ]
+}

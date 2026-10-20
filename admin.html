@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo | Galeto & Picanha</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  
+  <style>
+    :root {
+      --admin-bg: #09090b;
+      --admin-surface: #121215;
+      --admin-card: #18181c;
+      --admin-border: rgba(255, 255, 255, 0.12);
+      --admin-border-gold: rgba(246, 227, 0, 0.35);
+    }
+
+    body {
+      background-color: var(--admin-bg);
+      color: #ffffff;
+      font-family: var(--font-main);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header do Admin */
+    .admin-header {
+      background: #000000;
+      border-bottom: 2px solid var(--color-gold);
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .admin-header__inner {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .admin-brand img {
+      height: 48px;
+      width: auto;
+    }
+
+    .admin-brand__badge {
+      background: var(--color-gold);
+      color: #000000;
+      font-size: 0.72rem;
+      font-weight: 900;
+      padding: 3px 8px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .admin-header__status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--admin-surface);
+      border: 1px solid var(--admin-border);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #25d366;
+      box-shadow: 0 0 8px #25d366;
+    }
+
+    .status-dot--local {
+      background: var(--color-gold);
+      box-shadow: 0 0 8px var(--color-gold);
+    }
+
+    .admin-header__actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-admin {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      border: none;
+    }
+
+    .btn-admin--primary {
+      background: var(--color-gold);
+      color: #000000;
+    }
+
+    .btn-admin--primary:hover {
+      background: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .btn-admin--outline {
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid var(--admin-border);
+    }
+
+    .btn-admin--outline:hover {
+      background: var(--admin-surface);
+      border-color: #ffffff;
+    }
+
+    .btn-admin--danger {
+      background: rgba(227, 1, 33, 0.15);
+      color: #ff6b7b;
+      border: 1px solid rgba(227, 1, 33, 0.35);
+    }
+
+    .btn-admin--danger:hover {
+      background: var(--color-primary);
+      color: #ffffff;
+    }
+
+    /* Conteúdo Principal */
+    .admin-main {
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+      flex: 1;
+    }
+
+    /* Abas de Navegação */
+    .admin-tabs {
+      display: flex;
+      gap: 10px;
+      border-bottom: 1px solid var(--admin-border);
+      padding-bottom: 14px;
+      margin-bottom: 28px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .admin-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      background: var(--admin-surface);
+      color: #a9abb2;
+      border: 1px solid var(--admin-border);
+      border-radius: var(--radius-sm);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .admin-tab:hover {
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .admin-tab.active {
+      background: var(--color-gold);
+      color: #000000;
+      border-color: var(--color-gold);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Barras de Ação e Filtro */
+    .section-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .section-toolbar__title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-toolbar__sub {
+      color: #a9abb2;
+      font-size: 0.88rem;
+      margin-top: 4px;
+    }
+
+    /* Cards e Listas */
+    .admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .admin-card {
+      background: var(--admin-card);
+      border: 1px solid var(--admin-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color var(--transition-fast), transform var(--transition-fast);
+      position: relative;
+    }
+
+    .admin-card:hover {
+      border-color: var(--admin-border-gold);
+      transform: translateY(-2px);
+    }
+
+    .admin-card.inactive {
+      opacity: 0.55;
+    }
+
+    .admin-card__img-wrap {
+      position: relative;
+      height: 180px;
+      background: #000000;
+    }
+
+    .admin-card__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .admin-card__body {
+      padding: 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .admin-card__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .admin-card__title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin: 0;
+      color: #ffffff;
+    }
+
+    .admin-card__price {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--color-gold);
+      white-space: nowrap;
+    }
+
+    .admin-card__desc {
+      font-size: 0.85rem;
+      color: #d9d9de;
+      line-height: 1.45;
+      margin-bottom: 12px;
+      flex: 1;
+    }
+
+    .admin-card__meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+      font-size: 0.78rem;
+    }
+
+    .admin-card__tag {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      color: #d9d9de;
+    }
+
+    .admin-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      border-top: 1px solid var(--admin-border);
+      padding-top: 14px;
+      margin-top: auto;
+    }
+
+    /* Tabela de Destaques */
+    .destaques-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--admin-card);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--admin-border);
+    }
+
+    .destaques-table th {
+      background: #0d0d10;
+      padding: 14px 18px;
+      text-align: left;
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-gold);
+      border-bottom: 1px solid var(--admin-border);
+    }
+
+    .destaques-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.9rem;
+    }
+
+    .destaques-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Modal de Formulário */
+    .admin-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 1000;
+      padding: 20px;
+      align-items: center;
+      justify-content: center;
+      overflow-y: auto;
+    }
+
+    .admin-modal.open {
+      display: flex;
+    }
+
+    .admin-modal__dialog {
+      background: var(--admin-card);
+      border: 1.5px solid var(--admin-border-gold);
+      border-radius: var(--radius-md);
+      width: 100%;
+      max-width: 620px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+      padding: 26px;
+      position: relative;
+    }
+
+    .admin-modal__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--admin-border);
+      padding-bottom: 14px;
+    }
+
+    .admin-modal__title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    .admin-modal__close {
+      background: transparent;
+      border: none;
+      color: #a9abb2;
+      font-size: 1.5rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: #d9d9de;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      background: #0e0e11;
+      border: 1px solid var(--admin-border);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.9rem;
+      box-sizing: border-box;
+      transition: border-color var(--transition-fast);
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      outline: none;
+      border-color: var(--color-gold);
+      box-shadow: 0 0 10px rgba(246, 227, 0, 0.2);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .form-checkbox {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--color-gold);
+    }
+
+    /* Banner Config Supabase */
+    .supabase-box {
+      background: #0f172a;
+      border: 1px solid #38bdf8;
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .supabase-box__title {
+      color: #38bdf8;
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin: 0 0 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Toast */
+    .admin-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #25d366;
+      color: #000000;
+      font-weight: 800;
+      padding: 12px 20px;
+      border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      z-index: 2000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .admin-toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .admin-toast--error {
+      background: #e30121;
+      color: #ffffff;
+    }
+
+    /* Espaço de Anexação de Imagem do Evento */
+    .image-attach-box {
+      background: #0e0e12;
+      border: 1.5px dashed var(--admin-border-gold);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .image-attach-box__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .image-attach-box__title {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--color-gold);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .image-preview-area {
+      position: relative;
+      width: 100%;
+      max-width: 280px;
+      aspect-ratio: 1 / 1;
+      margin: 10px auto 0;
+      background: #050507;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--admin-border);
+    }
+
+    .image-preview-area img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .image-preview-area.empty {
+      background: rgba(255, 255, 255, 0.02);
+      color: #71717a;
+      font-size: 0.85rem;
+      font-weight: 600;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .image-preset-btns {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .btn-preset {
+      background: var(--admin-surface);
+      border: 1px solid var(--admin-border);
+      color: #d9d9de;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-preset:hover {
+      border-color: var(--color-gold);
+      color: #ffffff;
+      background: rgba(246, 227, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Administrativo -->
+  <header class="admin-header">
+    <div class="admin-header__inner">
+      <div class="admin-brand">
+        <img src="assets/logo_header.webp" alt="Galeto & Picanha">
+        <span class="admin-brand__badge">Painel CMS</span>
+      </div>
+
+      <div class="admin-header__status" id="connectionStatus">
+        <span class="status-dot status-dot--local" id="statusDot"></span>
+        <span id="statusText">Verificando conexão...</span>
+      </div>
+
+      <div class="admin-header__actions">
+        <a href="index.html" class="btn-admin btn-admin--primary" target="_blank">
+          <span>🌐</span> Ver Site Ao Vivo
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Corpo Principal -->
+  <main class="admin-main">
+    
+    <!-- Abas -->
+    <nav class="admin-tabs" role="tablist">
+      <button type="button" class="admin-tab active" data-tab="tab-destaques">
+        <span>🌟</span> Destaques da Semana
+      </button>
+      <button type="button" class="admin-tab" data-tab="tab-cardapio">
+        <span>🍽️</span> Cardápio Completo
+      </button>
+      <button type="button" class="admin-tab" data-tab="tab-eventos">
+        <span>📅</span> Sessão de Eventos (Hero & Mobile)
+      </button>
+      <button type="button" class="admin-tab" data-tab="tab-supabase">
+        <span>⚡</span> Configuração Supabase
+      </button>
+      <button type="button" class="admin-tab" data-tab="tab-backup">
+        <span>💾</span> Backup & Restauração
+      </button>
+    </nav>
+
+    <!-- =========================================================================
+         ABA 1: DESTAQUES DA SEMANA
+         ========================================================================= -->
+    <section class="tab-content active" id="tab-destaques">
+      <div class="section-toolbar">
+        <div>
+          <h2 class="section-toolbar__title"><span>🌟</span> Destaques da Semana</h2>
+          <div class="section-toolbar__sub">Itens exibidos no ticker deslizante do topo (Trending Bar)</div>
+        </div>
+        <button type="button" class="btn-admin btn-admin--primary" id="btnNovoDestaque">
+          <span>➕</span> Novo Destaque
+        </button>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="destaques-table">
+          <thead>
+            <tr>
+              <th style="width: 50px;">Ícone</th>
+              <th>Nome do Prato / Bebida</th>
+              <th>Preço</th>
+              <th>Badge</th>
+              <th style="width: 100px;">Status</th>
+              <th style="width: 140px; text-align: right;">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="destaquesTableBody">
+            <!-- Inserido dinamicamente -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         ABA 2: CARDÁPIO COMPLETO
+         ========================================================================= -->
+    <section class="tab-content" id="tab-cardapio">
+      <div class="section-toolbar">
+        <div>
+          <h2 class="section-toolbar__title"><span>🍽️</span> Cardápio de Pratos &amp; Bebidas</h2>
+          <div class="section-toolbar__sub">Adicione, edite valores, guarnições, fotos e badges dos pratos</div>
+        </div>
+        <button type="button" class="btn-admin btn-admin--primary" id="btnNovoPrato">
+          <span>➕</span> Novo Prato
+        </button>
+      </div>
+
+      <!-- Filtro de Categoria no Admin -->
+      <div style="margin-bottom: 20px; display: flex; gap: 8px; flex-wrap: wrap;" id="cardapioAdminTabs">
+        <button type="button" class="btn-admin btn-admin--outline active-category" data-cat="todos">Todos</button>
+        <button type="button" class="btn-admin btn-admin--outline" data-cat="galeto">🍗 Galetos</button>
+        <button type="button" class="btn-admin btn-admin--outline" data-cat="carnes">🥩 Carnes</button>
+        <button type="button" class="btn-admin btn-admin--outline" data-cat="petiscos">🥟 Petiscos</button>
+        <button type="button" class="btn-admin btn-admin--outline" data-cat="frutos-do-mar">🍤 Frutos do Mar</button>
+        <button type="button" class="btn-admin btn-admin--outline" data-cat="bebidas">🍺 Bebidas</button>
+      </div>
+
+      <div class="admin-grid" id="cardapioAdminGrid">
+        <!-- Inserido dinamicamente -->
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         ABA 3: EVENTOS (HERO FLOATING & MOBILE)
+         ========================================================================= -->
+    <section class="tab-content" id="tab-eventos">
+      <div class="section-toolbar">
+        <div>
+          <h2 class="section-toolbar__title"><span>📅</span> Eventos, Shows &amp; Atrações</h2>
+          <div class="section-toolbar__sub">
+            O evento marcado como <strong>Destaque no Hero</strong> flutua no canto superior direito do vídeo em telas grandes e aparece como seção dedicada em dispositivos móveis.
+          </div>
+        </div>
+        <button type="button" class="btn-admin btn-admin--primary" id="btnNovoEvento">
+          <span>➕</span> Novo Evento
+        </button>
+      </div>
+
+      <div class="admin-grid" id="eventosAdminGrid">
+        <!-- Inserido dinamicamente -->
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         ABA 4: CONFIGURAÇÃO SUPABASE
+         ========================================================================= -->
+    <section class="tab-content" id="tab-supabase">
+      <div class="supabase-box">
+        <h3 class="supabase-box__title"><span>⚡</span> Conexão com Supabase (Backend Serverless)</h3>
+        <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.5; margin-bottom: 16px;">
+          Conecte seu banco de dados PostgreSQL na nuvem para ter sincronização em tempo real entre todos os dispositivos.
+          Se preferir, o sistema continua funcionando perfeitamente em modo <strong>Local / Cache</strong> sem necessidade de credenciais.
+        </p>
+
+        <form id="supabaseConfigForm" style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="form-group" style="margin: 0;">
+            <label class="form-label" for="sbUrl">URL do Projeto Supabase (Project URL)</label>
+            <input type="url" id="sbUrl" class="form-input" placeholder="https://xyzabcdefg.supabase.co" required>
+          </div>
+          <div class="form-group" style="margin: 0;">
+            <label class="form-label" for="sbKey">Chave Pública Anônima (Anon Public API Key)</label>
+            <input type="text" id="sbKey" class="form-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..." required>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: center; margin-top: 6px;">
+            <button type="submit" class="btn-admin btn-admin--primary">
+              <span>💾</span> Salvar e Conectar
+            </button>
+            <button type="button" class="btn-admin btn-admin--outline" id="btnDesconectarSb">
+              Desconectar
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="admin-card" style="padding: 24px;">
+        <h3 style="margin-top: 0; color: var(--color-gold);">📜 Como criar as tabelas no Supabase:</h3>
+        <ol style="color: #d9d9de; line-height: 1.7; font-size: 0.9rem; padding-left: 20px;">
+          <li>Acesse seu painel no <a href="https://supabase.com/dashboard" target="_blank" rel="noopener" style="color: var(--color-gold);">Supabase Dashboard</a> e abra seu projeto.</li>
+          <li>Vá em <strong>SQL Editor</strong> no menu lateral esquerdo.</li>
+          <li>Clique no botão abaixo para copiar o script pronto e cole-o no SQL Editor do Supabase, depois clique em <strong>Run</strong>.</li>
+        </ol>
+        <button type="button" class="btn-admin btn-admin--primary" id="btnCopiarSql" style="align-self: flex-start;">
+          <span>📋</span> Copiar Script SQL do Banco (schema.sql)
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         ABA 5: BACKUP & RESTAURAÇÃO
+         ========================================================================= -->
+    <section class="tab-content" id="tab-backup">
+      <div class="section-toolbar">
+        <div>
+          <h2 class="section-toolbar__title"><span>💾</span> Backup e Sincronização de Dados</h2>
+          <div class="section-toolbar__sub">Exporte os dados editados para JSON ou restaure os valores originais</div>
+        </div>
+      </div>
+
+      <div class="admin-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="admin-card" style="padding: 24px;">
+          <h3 style="margin-top: 0; color: #ffffff;">Exportar Dados Atuais (JSON)</h3>
+          <p style="color: #d9d9de; font-size: 0.88rem; line-height: 1.5;">
+            Baixe um arquivo JSON com todos os destaques, pratos e eventos cadastrados para backup ou para versionamento no código.
+          </p>
+          <button type="button" class="btn-admin btn-admin--primary" id="btnDownloadBackup" style="margin-top: 14px;">
+            <span>⬇️</span> Baixar cms-data.json
+          </button>
+        </div>
+
+        <div class="admin-card" style="padding: 24px;">
+          <h3 style="margin-top: 0; color: #ffffff;">Importar Dados (JSON)</h3>
+          <p style="color: #d9d9de; font-size: 0.88rem; line-height: 1.5;">
+            Carregue um arquivo JSON com novos dados para atualizar todo o catálogo instantaneamente.
+          </p>
+          <input type="file" id="importFileInput" accept=".json" style="display: none;">
+          <button type="button" class="btn-admin btn-admin--outline" id="btnImportBackup" style="margin-top: 14px;">
+            <span>⬆️</span> Selecionar Arquivo JSON
+          </button>
+        </div>
+      </div>
+
+      <div class="admin-card" style="padding: 24px; margin-top: 20px; border-color: rgba(227, 1, 33, 0.4);">
+        <h3 style="margin-top: 0; color: var(--color-primary);">Restaurar Valores Padrões de Fábrica</h3>
+        <p style="color: #d9d9de; font-size: 0.88rem; line-height: 1.5;">
+          Limpa o cache do navegador e reverte o cardápio, destaques e eventos para os dados padrão iniciais do restaurante.
+        </p>
+        <button type="button" class="btn-admin btn-admin--danger" id="btnResetDefault" style="margin-top: 14px;">
+          <span>⚠️</span> Restaurar Padrões Iniciais
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       MODAIS DE EDIÇÃO
+       ========================================================================= -->
+
+  <!-- Modal Destaque -->
+  <div class="admin-modal" id="modalDestaque">
+    <div class="admin-modal__dialog">
+      <div class="admin-modal__header">
+        <h3 class="admin-modal__title" id="modalDestaqueTitle">Editar Destaque</h3>
+        <button type="button" class="admin-modal__close" data-close-modal>&times;</button>
+      </div>
+      <form id="formDestaque">
+        <input type="hidden" id="destaqueId">
+        <div class="form-group">
+          <label class="form-label" for="destaqueNome">Nome do Prato / Bebida</label>
+          <input type="text" id="destaqueNome" class="form-input" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="destaquePreco">Preço (Ex: R$ 69,90)</label>
+            <input type="text" id="destaquePreco" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="destaqueIcone">Ícone / Emoji (Ex: 🍗, 🥩, 🍺)</label>
+            <input type="text" id="destaqueIcone" class="form-input" value="🍗" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="destaqueBadge">Badge (Ex: Mais Pedido, Happy Hour)</label>
+            <input type="text" id="destaqueBadge" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="destaqueOrdem">Ordem de Exibição</label>
+            <input type="number" id="destaqueOrdem" class="form-input" value="1">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-checkbox-label">
+            <input type="checkbox" id="destaqueAtivo" class="form-checkbox" checked>
+            <span>Destaque Ativo (Exibir no Ticker da Top-Bar)</span>
+          </label>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+          <button type="button" class="btn-admin btn-admin--outline" data-close-modal>Cancelar</button>
+          <button type="submit" class="btn-admin btn-admin--primary">Salvar Destaque</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Prato Cardápio -->
+  <div class="admin-modal" id="modalPrato">
+    <div class="admin-modal__dialog">
+      <div class="admin-modal__header">
+        <h3 class="admin-modal__title" id="modalPratoTitle">Editar Prato do Cardápio</h3>
+        <button type="button" class="admin-modal__close" data-close-modal>&times;</button>
+      </div>
+      <form id="formPrato">
+        <input type="hidden" id="pratoId">
+        <div class="form-group">
+          <label class="form-label" for="pratoNome">Nome do Prato</label>
+          <input type="text" id="pratoNome" class="form-input" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="pratoCategoria">Categoria</label>
+            <select id="pratoCategoria" class="form-select" required>
+              <option value="galeto">🍗 Galetos na Brasa</option>
+              <option value="carnes">🥩 Picanhas &amp; Carnes</option>
+              <option value="petiscos">🥟 Petiscos de Botequim</option>
+              <option value="frutos-do-mar">🍤 Frutos do Mar &amp; Peixes</option>
+              <option value="bebidas">🍺 Cervejas, Chope &amp; Drinks</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pratoPreco">Preço (Ex: R$ 69,90)</label>
+            <input type="text" id="pratoPreco" class="form-input" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="pratoPrecoLabel">Rótulo do Preço</label>
+            <input type="text" id="pratoPrecoLabel" class="form-input" value="Valor sugerido">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pratoServe">Serve Quantas Pessoas?</label>
+            <input type="text" id="pratoServe" class="form-input" placeholder="Ex: Serve 2 pessoas">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="pratoDescricao">Descrição Gastronômica</label>
+          <textarea id="pratoDescricao" class="form-textarea" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="pratoAcompanhamentos">Guarnições Inclusas / Acompanhamentos</label>
+          <input type="text" id="pratoAcompanhamentos" class="form-input" placeholder="Ex: Arroz de brócolis, farofa e fritas">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="pratoBadge">Texto da Badge (Opcional)</label>
+            <input type="text" id="pratoBadge" class="form-input" placeholder="Ex: Campeão de Vendas">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="pratoBadgeTipo">Cor da Badge</label>
+            <select id="pratoBadgeTipo" class="form-select">
+              <option value="badge--red">Vermelho (Destaque)</option>
+              <option value="badge--gold">Dourado (Especial)</option>
+              <option value="badge--soft-gold">Dourado Suave</option>
+              <option value="badge--green">Verde (Fresco/Gelado)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="pratoImagem">URL da Foto / Imagem do Prato</label>
+          <input type="text" id="pratoImagem" class="form-input" value="assets/imagens/2.webp" required>
+          <small style="color: #a9abb2; font-size: 0.78rem; display: block; margin-top: 4px;">
+            Atalhos locais: assets/imagens/1.webp até 11.webp, ou link externo de foto.
+          </small>
+        </div>
+        <div class="form-group">
+          <label class="form-checkbox-label">
+            <input type="checkbox" id="pratoAtivo" class="form-checkbox" checked>
+            <span>Prato Disponível no Cardápio</span>
+          </label>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+          <button type="button" class="btn-admin btn-admin--outline" data-close-modal>Cancelar</button>
+          <button type="submit" class="btn-admin btn-admin--primary">Salvar Prato</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Evento -->
+  <div class="admin-modal" id="modalEvento">
+    <div class="admin-modal__dialog">
+      <div class="admin-modal__header">
+        <h3 class="admin-modal__title" id="modalEventoTitle">Editar Evento</h3>
+        <button type="button" class="admin-modal__close" data-close-modal>&times;</button>
+      </div>
+      <form id="formEvento">
+        <input type="hidden" id="eventoId">
+        <div class="form-group">
+          <label class="form-label" for="eventoTitulo">Título do Evento</label>
+          <input type="text" id="eventoTitulo" class="form-input" placeholder="Ex: Samba de Raiz & Feijoada" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="eventoSubtitulo">Subtítulo / Atração</label>
+          <input type="text" id="eventoSubtitulo" class="form-input" placeholder="Ex: Roda de Samba do Grajaú com Chope Nevado">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="eventoData">Dia / Data</label>
+            <input type="text" id="eventoData" class="form-input" placeholder="Ex: Todo Sábado ou 25 de Outubro" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="eventoHorario">Horário</label>
+            <input type="text" id="eventoHorario" class="form-input" placeholder="Ex: A partir das 13h" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="eventoBadge">Badge / Categoria</label>
+            <input type="text" id="eventoBadge" class="form-input" value="Música ao Vivo">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="eventoIcone">Ícone / Emoji</label>
+            <input type="text" id="eventoIcone" class="form-input" value="🎵">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="eventoDescricao">Descrição do Evento</label>
+          <textarea id="eventoDescricao" class="form-textarea" rows="3" required></textarea>
+        </div>
+
+        <!-- ESPAÇO PARA ANEXAÇÃO DE IMAGEM / BANNER DO EVENTO -->
+        <div class="image-attach-box">
+          <div class="image-attach-box__header">
+            <span class="image-attach-box__title">
+              <span>🖼️</span> Imagem / Banner do Evento
+            </span>
+            <div style="display: flex; gap: 8px;">
+              <input type="file" id="eventoFileInput" accept="image/*" style="display: none;">
+              <button type="button" class="btn-admin btn-admin--primary" id="btnEscolherArquivo" style="font-size: 0.78rem; padding: 6px 12px;">
+                📁 Anexar do Computador
+              </button>
+              <button type="button" class="btn-admin btn-admin--danger" id="btnRemoverImagem" style="font-size: 0.78rem; padding: 6px 10px;">
+                🗑️ Limpar
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 8px;">
+            <label class="form-label" for="eventoImagem" style="font-size: 0.8rem;">URL da Imagem ou Caminho Local</label>
+            <input type="text" id="eventoImagem" class="form-input" placeholder="Ex: assets/imagens/1.webp ou https://..." value="assets/imagens/1.webp" style="font-size: 0.88rem; padding: 8px 12px;">
+          </div>
+
+          <div>
+            <span style="font-size: 0.75rem; color: #a9abb2; font-weight: 700;">Atalhos rápidos da galeria do restaurante:</span>
+            <div class="image-preset-btns" id="eventoPresetBtns">
+              <button type="button" class="btn-preset" data-img="assets/imagens/1.webp">Feijoada / Samba</button>
+              <button type="button" class="btn-preset" data-img="assets/imagens/8.webp">Picanha Nobre</button>
+              <button type="button" class="btn-preset" data-img="assets/imagens/2.webp">Galeto Dourado</button>
+              <button type="button" class="btn-preset" data-img="assets/cdb/cdb_foto_oficial.jpg">🏆 Boi do Zé (CDB)</button>
+              <button type="button" class="btn-preset" data-img="assets/imagens/6.webp">Carne de Sol</button>
+              <button type="button" class="btn-preset" data-img="assets/imagens/3.webp">Drinks &amp; Chope</button>
+              <button type="button" class="btn-preset" data-img="assets/imagens/4.webp">Cervejas Nevadas</button>
+            </div>
+          </div>
+
+          <!-- Preview em tempo real da Imagem Anexada -->
+          <div class="image-preview-area" id="eventoImgPreviewArea">
+            <img id="eventoImgPreview" src="assets/imagens/1.webp" alt="Prévia do Banner do Evento">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="eventoMsgZap">Mensagem Pré-preenchida no WhatsApp</label>
+          <input type="text" id="eventoMsgZap" class="form-input" placeholder="Ex: Olá, gostaria de reservar uma mesa para o evento...">
+        </div>
+        <div class="form-group">
+          <label class="form-checkbox-label">
+            <input type="checkbox" id="eventoDestaqueHero" class="form-checkbox" checked>
+            <span><strong>Destaque no Hero:</strong> Flutuar sobre o vídeo no canto direito (Desktop)</span>
+          </label>
+        </div>
+        <div class="form-group">
+          <label class="form-checkbox-label">
+            <input type="checkbox" id="eventoAtivo" class="form-checkbox" checked>
+            <span>Evento Ativo</span>
+          </label>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px;">
+          <button type="button" class="btn-admin btn-admin--outline" data-close-modal>Cancelar</button>
+          <button type="submit" class="btn-admin btn-admin--primary">Salvar Evento</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="admin-toast" id="adminToast">Operação realizada com sucesso!</div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/cms.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await GaletoCMS.init();
+      updateStatusBadge();
+      loadDestaques();
+      loadCardapio('todos');
+      loadEventos();
+      loadSupabaseForm();
+      setupTabs();
+      setupModals();
+      setupForms();
+      setupBackupActions();
+    });
+
+    // 1. Status de Conexão
+    function updateStatusBadge() {
+      const status = GaletoCMS.getStatus();
+      const dot = document.getElementById('statusDot');
+      const text = document.getElementById('statusText');
+
+      if (status.connected) {
+        dot.className = 'status-dot';
+        text.innerText = 'Supabase Conectado (' + status.url + ')';
+      } else if (status.hasCredentials) {
+        dot.className = 'status-dot status-dot--local';
+        text.innerText = 'Supabase Offline (Usando Cache Local)';
+      } else {
+        dot.className = 'status-dot status-dot--local';
+        text.innerText = 'Modo Local Ativo (Sem Supabase)';
+      }
+    }
+
+    // 2. Abas
+    function setupTabs() {
+      const tabs = document.querySelectorAll('.admin-tab');
+      const contents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          contents.forEach(c => c.classList.remove('active'));
+          tab.classList.add('active');
+          const target = document.getElementById(tab.dataset.tab);
+          if (target) target.classList.add('active');
+        });
+      });
+    }
+
+    // Toast
+    function showToast(msg, isError = false) {
+      const toast = document.getElementById('adminToast');
+      toast.innerText = msg;
+      toast.className = 'admin-toast' + (isError ? ' admin-toast--error' : '') + ' show';
+      setTimeout(() => {
+        toast.className = 'admin-toast';
+      }, 3500);
+    }
+
+    // =========================================================================
+    // DESTAQUES DA SEMANA
+    // =========================================================================
+    async function loadDestaques() {
+      const list = await GaletoCMS.getDestaques(false);
+      const tbody = document.getElementById('destaquesTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = list.map(item => `
+        <tr style="${item.ativo ? '' : 'opacity: 0.5;'}">
+          <td style="font-size: 1.3rem;">${item.icone || '🍗'}</td>
+          <td>
+            <strong>${item.nome}</strong>
+          </td>
+          <td><strong style="color: var(--color-gold);">${item.preco}</strong></td>
+          <td>${item.badge ? `<span style="background: var(--color-primary); color: #fff; padding: 2px 8px; border-radius: 999px; font-size: 0.72rem; font-weight: 700;">${item.badge}</span>` : '-'}</td>
+          <td>
+            <span style="color: ${item.ativo ? '#25d366' : '#ff6b7b'}; font-weight: 700; font-size: 0.8rem;">
+              ${item.ativo ? '● Ativo' : '○ Pausado'}
+            </span>
+          </td>
+          <td style="text-align: right;">
+            <button type="button" class="btn-admin btn-admin--outline" style="padding: 4px 10px; font-size: 0.8rem;" onclick="editarDestaque(${item.id})">Editar</button>
+            <button type="button" class="btn-admin btn-admin--danger" style="padding: 4px 10px; font-size: 0.8rem;" onclick="excluirDestaque(${item.id})">&times;</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    window.editarDestaque = async function(id) {
+      const list = await GaletoCMS.getDestaques(false);
+      const item = list.find(d => d.id === id);
+      if (!item) return;
+
+      document.getElementById('destaqueId').value = item.id;
+      document.getElementById('destaqueNome').value = item.nome;
+      document.getElementById('destaquePreco').value = item.preco;
+      document.getElementById('destaqueIcone').value = item.icone || '🍗';
+      document.getElementById('destaqueBadge').value = item.badge || '';
+      document.getElementById('destaqueOrdem').value = item.ordem || 1;
+      document.getElementById('destaqueAtivo').checked = item.ativo !== false;
+      document.getElementById('modalDestaqueTitle').innerText = 'Editar Destaque';
+
+      document.getElementById('modalDestaque').classList.add('open');
+    };
+
+    window.excluirDestaque = async function(id) {
+      if (!confirm('Deseja realmente remover este destaque da semana?')) return;
+      await GaletoCMS.deleteDestaque(id);
+      showToast('Destaque excluído com sucesso!');
+      loadDestaques();
+    };
+
+    // =========================================================================
+    // CARDÁPIO COMPLETO
+    // =========================================================================
+    let currentCategory = 'todos';
+
+    async function loadCardapio(cat = 'todos') {
+      currentCategory = cat;
+      const list = await GaletoCMS.getCardapio(false);
+      const filtered = (cat === 'todos') ? list : list.filter(p => p.categoria === cat);
+      const grid = document.getElementById('cardapioAdminGrid');
+      if (!grid) return;
+
+      grid.innerHTML = filtered.map(prato => `
+        <div class="admin-card ${prato.ativo ? '' : 'inactive'}">
+          <div class="admin-card__img-wrap">
+            <img src="${prato.imagem_url || 'assets/imagens/2.webp'}" alt="${prato.nome}" class="admin-card__img" loading="lazy">
+            ${prato.badge ? `<div style="position: absolute; top: 10px; left: 10px; background: var(--color-primary); color: #fff; font-size: 0.72rem; font-weight: 800; padding: 3px 8px; border-radius: 999px;">${prato.badge}</div>` : ''}
+          </div>
+          <div class="admin-card__body">
+            <div class="admin-card__header">
+              <h3 class="admin-card__title">${prato.nome}</h3>
+              <span class="admin-card__price">${prato.preco}</span>
+            </div>
+            <div class="admin-card__meta">
+              <span class="admin-card__tag">📁 ${prato.categoria}</span>
+              ${prato.serve ? `<span class="admin-card__tag">👥 ${prato.serve}</span>` : ''}
+              <span class="admin-card__tag" style="color: ${prato.ativo ? '#25d366' : '#ff6b7b'};">
+                ${prato.ativo ? '● Disponível' : '○ Indisponível'}
+              </span>
+            </div>
+            <p class="admin-card__desc">${prato.descricao || ''}</p>
+            <div class="admin-card__footer">
+              <button type="button" class="btn-admin btn-admin--outline" style="font-size: 0.8rem; padding: 6px 14px;" onclick="editarPrato(${prato.id})">
+                ✏️ Editar
+              </button>
+              <button type="button" class="btn-admin btn-admin--danger" style="font-size: 0.8rem; padding: 6px 14px;" onclick="excluirPrato(${prato.id})">
+                🗑️ Excluir
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.querySelectorAll('#cardapioAdminTabs button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#cardapioAdminTabs button').forEach(b => b.style.borderColor = '');
+        btn.style.borderColor = 'var(--color-gold)';
+        loadCardapio(btn.dataset.cat);
+      });
+    });
+
+    window.editarPrato = async function(id) {
+      const list = await GaletoCMS.getCardapio(false);
+      const prato = list.find(p => p.id === id);
+      if (!prato) return;
+
+      document.getElementById('pratoId').value = prato.id;
+      document.getElementById('pratoNome').value = prato.nome;
+      document.getElementById('pratoCategoria').value = prato.categoria;
+      document.getElementById('pratoPreco').value = prato.preco;
+      document.getElementById('pratoPrecoLabel').value = prato.preco_label || 'Valor sugerido';
+      document.getElementById('pratoServe').value = prato.serve || '';
+      document.getElementById('pratoDescricao').value = prato.descricao || '';
+      document.getElementById('pratoAcompanhamentos').value = prato.acompanhamentos || '';
+      document.getElementById('pratoBadge').value = prato.badge || '';
+      document.getElementById('pratoBadgeTipo').value = prato.badge_tipo || 'badge--red';
+      document.getElementById('pratoImagem').value = prato.imagem_url || '';
+      document.getElementById('pratoAtivo').checked = prato.ativo !== false;
+      document.getElementById('modalPratoTitle').innerText = 'Editar Prato do Cardápio';
+
+      document.getElementById('modalPrato').classList.add('open');
+    };
+
+    window.excluirPrato = async function(id) {
+      if (!confirm('Deseja realmente excluir este prato do cardápio?')) return;
+      await GaletoCMS.deletePrato(id);
+      showToast('Prato removido com sucesso!');
+      loadCardapio(currentCategory);
+    };
+
+    // =========================================================================
+    // EVENTOS (HERO & MOBILE)
+    // =========================================================================
+    function updateEventoImgPreview(url) {
+      const area = document.getElementById('eventoImgPreviewArea');
+      const img = document.getElementById('eventoImgPreview');
+      if (!area || !img) return;
+
+      if (url && url.trim()) {
+        img.src = url.trim();
+        img.style.display = 'block';
+        area.classList.remove('empty');
+      } else {
+        img.src = '';
+        img.style.display = 'none';
+        area.classList.add('empty');
+      }
+    }
+
+    function setupEventoImageAttachment() {
+      const fileInput = document.getElementById('eventoFileInput');
+      const btnChoose = document.getElementById('btnEscolherArquivo');
+      const btnClear = document.getElementById('btnRemoverImagem');
+      const inputUrl = document.getElementById('eventoImagem');
+      const presetBtns = document.querySelectorAll('#eventoPresetBtns .btn-preset');
+
+      if (btnChoose && fileInput) {
+        btnChoose.onclick = () => fileInput.click();
+        fileInput.onchange = async (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (!file) return;
+          showToast('Processando imagem do evento...');
+          try {
+            const res = await GaletoCMS.uploadImage(file, 'eventos');
+            if (inputUrl) inputUrl.value = res.url;
+            updateEventoImgPreview(res.url);
+            if (res.source === 'supabase') {
+              showToast('Imagem salva no Supabase Storage!');
+            } else {
+              showToast('Imagem carregada no cache local!');
+            }
+          } catch (err) {
+            console.error(err);
+            showToast('Erro ao carregar imagem', true);
+          }
+        };
+      }
+
+      if (btnClear && inputUrl) {
+        btnClear.onclick = () => {
+          inputUrl.value = '';
+          if (fileInput) fileInput.value = '';
+          updateEventoImgPreview('');
+        };
+      }
+
+      if (inputUrl) {
+        inputUrl.addEventListener('input', () => {
+          updateEventoImgPreview(inputUrl.value.trim());
+        });
+      }
+
+      presetBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const path = btn.dataset.img;
+          if (inputUrl) inputUrl.value = path;
+          updateEventoImgPreview(path);
+        });
+      });
+    }
+
+    async function loadEventos() {
+      const list = await GaletoCMS.getEventos(false);
+      const grid = document.getElementById('eventosAdminGrid');
+      if (!grid) return;
+
+      grid.innerHTML = list.map(ev => `
+        <div class="admin-card ${ev.ativo ? '' : 'inactive'}">
+          <div class="admin-card__img-wrap" style="width: 100%; aspect-ratio: 1 / 1; height: auto; position: relative; overflow: hidden; background: #000;">
+            <img src="${ev.imagem_url || 'assets/imagens/1.webp'}" alt="${ev.titulo}" class="admin-card__img" style="width: 100%; height: 100%; object-fit: cover; object-position: center; display: block;" loading="lazy">
+            <div style="position: absolute; top: 10px; left: 10px; background: var(--color-gold); color: #000; font-size: 0.72rem; font-weight: 800; padding: 3px 8px; border-radius: 999px;">
+              ${ev.badge || 'Evento'}
+            </div>
+            ${ev.destaque_hero ? `<div style="position: absolute; top: 10px; right: 10px; background: rgba(0, 0, 0, 0.85); color: var(--color-gold); font-size: 0.72rem; font-weight: 800; padding: 3px 8px; border-radius: 999px; border: 1px solid var(--color-gold);">★ Flutuante no Hero</div>` : ''}
+          </div>
+          <div class="admin-card__body">
+            <div class="admin-card__header">
+              <h3 class="admin-card__title">${ev.icone || '🎵'} ${ev.titulo}</h3>
+            </div>
+            ${ev.subtitulo ? `<div style="color: var(--color-gold); font-size: 0.85rem; font-weight: 600; margin-bottom: 8px;">${ev.subtitulo}</div>` : ''}
+            <div class="admin-card__meta">
+              <span class="admin-card__tag">📅 ${ev.data_texto}</span>
+              <span class="admin-card__tag">⏰ ${ev.horario}</span>
+              <span class="admin-card__tag" style="color: ${ev.ativo ? '#25d366' : '#ff6b7b'};">
+                ${ev.ativo ? '● Ativo' : '○ Inativo'}
+              </span>
+            </div>
+            <p class="admin-card__desc">${ev.descricao || ''}</p>
+            <div class="admin-card__footer">
+              <button type="button" class="btn-admin btn-admin--outline" style="font-size: 0.8rem; padding: 6px 14px;" onclick="editarEvento(${ev.id})">
+                ✏️ Editar
+              </button>
+              <button type="button" class="btn-admin btn-admin--danger" style="font-size: 0.8rem; padding: 6px 14px;" onclick="excluirEvento(${ev.id})">
+                🗑️ Excluir
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    window.editarEvento = async function(id) {
+      const list = await GaletoCMS.getEventos(false);
+      const ev = list.find(e => e.id === id);
+      if (!ev) return;
+
+      document.getElementById('eventoId').value = ev.id;
+      document.getElementById('eventoTitulo').value = ev.titulo;
+      document.getElementById('eventoSubtitulo').value = ev.subtitulo || '';
+      document.getElementById('eventoData').value = ev.data_texto;
+      document.getElementById('eventoHorario').value = ev.horario;
+      document.getElementById('eventoBadge').value = ev.badge || 'Música ao Vivo';
+      document.getElementById('eventoIcone').value = ev.icone || '🎵';
+      document.getElementById('eventoDescricao').value = ev.descricao || '';
+      document.getElementById('eventoMsgZap').value = ev.link_whatsapp_msg || '';
+      const imgVal = ev.imagem_url || 'assets/imagens/1.webp';
+      document.getElementById('eventoImagem').value = imgVal;
+      updateEventoImgPreview(imgVal);
+      document.getElementById('eventoDestaqueHero').checked = ev.destaque_hero !== false;
+      document.getElementById('eventoAtivo').checked = ev.ativo !== false;
+      document.getElementById('modalEventoTitle').innerText = 'Editar Evento';
+
+      document.getElementById('modalEvento').classList.add('open');
+    };
+
+    window.excluirEvento = async function(id) {
+      if (!confirm('Deseja realmente excluir este evento?')) return;
+      await GaletoCMS.deleteEvento(id);
+      showToast('Evento excluído com sucesso!');
+      loadEventos();
+    };
+
+    // =========================================================================
+    // MODAIS & FORMS
+    // =========================================================================
+    function setupModals() {
+      document.querySelectorAll('[data-close-modal]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.admin-modal').forEach(m => m.classList.remove('open'));
+        });
+      });
+
+      document.getElementById('btnNovoDestaque').onclick = () => {
+        document.getElementById('formDestaque').reset();
+        document.getElementById('destaqueId').value = '';
+        document.getElementById('modalDestaqueTitle').innerText = 'Novo Destaque da Semana';
+        document.getElementById('modalDestaque').classList.add('open');
+      };
+
+      document.getElementById('btnNovoPrato').onclick = () => {
+        document.getElementById('formPrato').reset();
+        document.getElementById('pratoId').value = '';
+        document.getElementById('pratoImagem').value = 'assets/imagens/2.webp';
+        document.getElementById('modalPratoTitle').innerText = 'Novo Prato no Cardápio';
+        document.getElementById('modalPrato').classList.add('open');
+      };
+
+      document.getElementById('btnNovoEvento').onclick = () => {
+        document.getElementById('formEvento').reset();
+        document.getElementById('eventoId').value = '';
+        document.getElementById('eventoIcone').value = '🎵';
+        const defaultImg = 'assets/imagens/1.webp';
+        document.getElementById('eventoImagem').value = defaultImg;
+        updateEventoImgPreview(defaultImg);
+        document.getElementById('modalEventoTitle').innerText = 'Novo Evento / Atração';
+        document.getElementById('modalEvento').classList.add('open');
+      };
+    }
+
+    function setupForms() {
+      setupEventoImageAttachment();
+
+      // Salvar Destaque
+      document.getElementById('formDestaque').onsubmit = async (e) => {
+        e.preventDefault();
+        const rawId = document.getElementById('destaqueId').value;
+        const item = {
+          id: rawId ? Number(rawId) : undefined,
+          nome: document.getElementById('destaqueNome').value.trim(),
+          preco: document.getElementById('destaquePreco').value.trim(),
+          icone: document.getElementById('destaqueIcone').value.trim() || '🍗',
+          badge: document.getElementById('destaqueBadge').value.trim(),
+          ordem: Number(document.getElementById('destaqueOrdem').value) || 1,
+          ativo: document.getElementById('destaqueAtivo').checked
+        };
+        await GaletoCMS.saveDestaque(item);
+        document.getElementById('modalDestaque').classList.remove('open');
+        showToast('Destaque salvo com sucesso!');
+        loadDestaques();
+      };
+
+      // Salvar Prato
+      document.getElementById('formPrato').onsubmit = async (e) => {
+        e.preventDefault();
+        const rawId = document.getElementById('pratoId').value;
+        const item = {
+          id: rawId ? Number(rawId) : undefined,
+          nome: document.getElementById('pratoNome').value.trim(),
+          categoria: document.getElementById('pratoCategoria').value,
+          preco: document.getElementById('pratoPreco').value.trim(),
+          preco_label: document.getElementById('pratoPrecoLabel').value.trim() || 'Valor sugerido',
+          serve: document.getElementById('pratoServe').value.trim(),
+          descricao: document.getElementById('pratoDescricao').value.trim(),
+          acompanhamentos: document.getElementById('pratoAcompanhamentos').value.trim(),
+          badge: document.getElementById('pratoBadge').value.trim(),
+          badge_tipo: document.getElementById('pratoBadgeTipo').value,
+          imagem_url: document.getElementById('pratoImagem').value.trim() || 'assets/imagens/2.webp',
+          ativo: document.getElementById('pratoAtivo').checked
+        };
+        await GaletoCMS.savePrato(item);
+        document.getElementById('modalPrato').classList.remove('open');
+        showToast('Prato salvo com sucesso!');
+        loadCardapio(currentCategory);
+      };
+
+      // Salvar Evento
+      document.getElementById('formEvento').onsubmit = async (e) => {
+        e.preventDefault();
+        const rawId = document.getElementById('eventoId').value;
+        const item = {
+          id: rawId ? Number(rawId) : undefined,
+          titulo: document.getElementById('eventoTitulo').value.trim(),
+          subtitulo: document.getElementById('eventoSubtitulo').value.trim(),
+          data_texto: document.getElementById('eventoData').value.trim(),
+          horario: document.getElementById('eventoHorario').value.trim(),
+          badge: document.getElementById('eventoBadge').value.trim() || 'Música ao Vivo',
+          icone: document.getElementById('eventoIcone').value.trim() || '🎵',
+          descricao: document.getElementById('eventoDescricao').value.trim(),
+          imagem_url: document.getElementById('eventoImagem').value.trim() || 'assets/imagens/1.webp',
+          link_whatsapp_msg: document.getElementById('eventoMsgZap').value.trim(),
+          destaque_hero: document.getElementById('eventoDestaqueHero').checked,
+          ativo: document.getElementById('eventoAtivo').checked
+        };
+        await GaletoCMS.saveEvento(item);
+        document.getElementById('modalEvento').classList.remove('open');
+        showToast('Evento salvo com sucesso!');
+        loadEventos();
+      };
+    }
+
+    // =========================================================================
+    // CONFIGURAÇÃO SUPABASE
+    // =========================================================================
+    function loadSupabaseForm() {
+      const url = localStorage.getItem('gp_supabase_url') || (window.SUPABASE_CONFIG && window.SUPABASE_CONFIG.url) || '';
+      const key = localStorage.getItem('gp_supabase_key') || (window.SUPABASE_CONFIG && window.SUPABASE_CONFIG.anonKey) || '';
+      document.getElementById('sbUrl').value = url;
+      document.getElementById('sbKey').value = key;
+
+      document.getElementById('supabaseConfigForm').onsubmit = async (e) => {
+        e.preventDefault();
+        const newUrl = document.getElementById('sbUrl').value.trim();
+        const newKey = document.getElementById('sbKey').value.trim();
+        await GaletoCMS.setSupabaseConfig(newUrl, newKey);
+        updateStatusBadge();
+        showToast('Configurações do Supabase salvas e conectadas!');
+      };
+
+      document.getElementById('btnDesconectarSb').onclick = async () => {
+        await GaletoCMS.setSupabaseConfig('', '');
+        document.getElementById('sbUrl').value = '';
+        document.getElementById('sbKey').value = '';
+        updateStatusBadge();
+        showToast('Supabase desconectado. Modo Local ativo.');
+      };
+
+      // Copiar SQL
+      document.getElementById('btnCopiarSql').onclick = async () => {
+        try {
+          const resp = await fetch('supabase/schema.sql');
+          if (resp.ok) {
+            const sqlText = await resp.text();
+            await navigator.clipboard.writeText(sqlText);
+            showToast('Script schema.sql copiado para a área de transferência!');
+          }
+        } catch (err) {
+          showToast('Erro ao ler supabase/schema.sql', true);
+        }
+      };
+    }
+
+    // =========================================================================
+    // BACKUP E RESTAURAÇÃO
+    // =========================================================================
+    function setupBackupActions() {
+      // Download Backup
+      document.getElementById('btnDownloadBackup').onclick = () => {
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(GaletoCMS.exportData());
+        const dlAnchor = document.createElement('a');
+        dlAnchor.setAttribute("href", dataStr);
+        dlAnchor.setAttribute("download", "galeto_cms_backup_" + new Date().toISOString().slice(0, 10) + ".json");
+        document.body.appendChild(dlAnchor);
+        dlAnchor.click();
+        dlAnchor.remove();
+        showToast('Backup JSON baixado com sucesso!');
+      };
+
+      // Importar Backup
+      const fileInput = document.getElementById('importFileInput');
+      document.getElementById('btnImportBackup').onclick = () => fileInput.click();
+      fileInput.onchange = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = async (event) => {
+          try {
+            await GaletoCMS.importData(event.target.result);
+            showToast('Dados importados com sucesso!');
+            loadDestaques();
+            loadCardapio('todos');
+            loadEventos();
+          } catch (err) {
+            showToast('Erro ao importar arquivo JSON: ' + err.message, true);
+          }
+        };
+        reader.readAsText(file);
+      };
+
+      // Reset
+      document.getElementById('btnResetDefault').onclick = async () => {
+        if (!confirm('ATENÇÃO: Deseja reverter todos os pratos, destaques e eventos para os padrões iniciais de fábrica?')) return;
+        await GaletoCMS.resetToDefault();
+        showToast('Dados restaurados para os padrões iniciais!');
+        loadDestaques();
+        loadCardapio('todos');
+        loadEventos();
+      };
+    }
+  </script>
+</body>
+</html>

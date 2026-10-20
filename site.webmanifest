@@ -1,0 +1,29 @@
+{
+  "name": "Galeto e Picanha - Bar e Restaurante Grajaú",
+  "short_name": "Galeto & Picanha",
+  "description": "Bar e Restaurante no Grajaú. Galeto na brasa, picanha nobre, chope estupidamente gelado e comida boa todos os dias das 11h às 00h.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#f6e300",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

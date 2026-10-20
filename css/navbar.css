@@ -1,0 +1,556 @@
+/* ==============================================================================
+   GALETO & PICANHA - NAVBAR, HEADER & TRENDING BAR
+   Paleta Oficial: Amarelo #F6E300 | Vermelho #E30121 | Branco #FFFFFF | Preto #000000
+   Trending Ticker (referência noticias_bairro), Logo centralizada com flutuação,
+   novo hover em cápsula de alto contraste e drawer mobile.
+   ============================================================================== */
+
+/* ==============================================================================
+   1. TRENDING BAR (Ticker de Destaques Dinâmicos do Cardápio - Fundo Amarelo)
+   ============================================================================== */
+.trending-bar {
+  background: var(--color-gold);
+  border-bottom: none;
+  padding: 8px 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 1002;
+}
+
+.trending-bar__inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.trending-bar__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #000000;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.trending-bar__label-mobile {
+  display: none;
+}
+
+.trending-bar__label-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+}
+
+.trending-bar__ticker {
+  overflow: hidden;
+  flex: 1;
+  min-width: 0;
+  position: relative;
+  mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+}
+
+.trending-bar__list {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  width: max-content;
+  animation: ticker 70s linear infinite;
+}
+
+.trending-bar__list:hover {
+  animation-play-state: paused;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.trending-bar__item {
+  white-space: nowrap;
+  font-size: 0.82rem;
+  color: #000000;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.trending-bar__link {
+  color: #000000;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.trending-bar__link:hover {
+  color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.trending-bar__icon {
+  font-size: 0.95rem;
+}
+
+.trending-bar__name {
+  font-weight: 700;
+  color: #000000;
+}
+
+.trending-bar__link:hover .trending-bar__name {
+  color: var(--color-primary);
+}
+
+.trending-bar__price {
+  color: var(--color-gold);
+  font-weight: 800;
+  font-size: 0.84rem;
+  background: #000000;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid #000000;
+  letter-spacing: -0.01em;
+}
+
+.trending-bar__badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.trending-bar__sep {
+  color: rgba(0, 0, 0, 0.28);
+  font-size: 0.75rem;
+  margin-left: 8px;
+}
+
+/* ==============================================================================
+   2. HEADER PRINCIPAL STICKY (Preto Profundo)
+   ============================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: #000000;
+  border-bottom: none;
+  transition: background var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.site-header.scrolled {
+  background: rgba(0, 0, 0, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 112px;
+  position: relative;
+  transition: height var(--transition-normal);
+}
+
+.site-header.scrolled .site-header__inner {
+  height: 90px;
+}
+
+/* ==============================================================================
+   3. LOGO CENTRALIZADA NO MEIO DO NAVBAR (Flutuação e Sombra em Fundo Preto)
+   ============================================================================== */
+.brand {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  z-index: 10;
+  padding: 14px 0; /* Aumento de 20% no padding top e bottom */
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand__logo-img {
+  height: 82px;
+  width: auto;
+  display: block;
+  /* Efeito de sombreamento com sutil halo quente de profundidade para fundo preto */
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 14px rgba(246, 227, 0, 0.16));
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), height var(--transition-normal), filter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.site-header.scrolled .brand__logo-img {
+  height: 70px;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 10px rgba(246, 227, 0, 0.12));
+}
+
+.brand:hover .brand__logo-img {
+  transform: translateY(-4px) scale(1.04);
+  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 24px rgba(246, 227, 0, 0.3));
+}
+
+/* Logo no topo do Drawer Mobile (estática e alinhada) */
+.brand--drawer {
+  position: static;
+  transform: none;
+}
+
+.brand--drawer .brand__logo-img {
+  height: 54px;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.8)) drop-shadow(0 0 10px rgba(246, 227, 0, 0.15));
+}
+
+.brand--drawer:hover .brand__logo-img {
+  transform: scale(1.04);
+}
+
+/* ==============================================================================
+   4. MENU DE NAVEGAÇÃO DESKTOP (Split em 2 grupos ao redor da logo)
+   ============================================================================== */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nav-menu__group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-menu__group--left {
+  justify-content: flex-start;
+}
+
+.nav-menu__group--right {
+  justify-content: flex-end;
+}
+
+/* Links em fundo preto: Branco no padrão, Cápsula Dourada no Hover/Active */
+.nav-menu__link {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  position: relative;
+  padding: 8px 18px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+  background: transparent;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  letter-spacing: -0.01em;
+}
+
+/* Hover: Cápsula Dourada elegante de alto contraste */
+.nav-menu__link:hover {
+  background: var(--color-gold);
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(246, 227, 0, 0.35);
+}
+
+/* Estado Ativo: Cápsula Dourada permanente */
+.nav-menu__link.active {
+  background: var(--color-gold);
+  color: #000000;
+  box-shadow: 0 4px 14px rgba(246, 227, 0, 0.28);
+}
+
+.nav-menu__link.active:hover {
+  background: #ffffff;
+  color: #000000;
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+}
+
+.nav-menu__mobile-header {
+  display: none;
+}
+
+/* ==============================================================================
+   5. AÇÕES DO HEADER & BOTÃO HAMBURGER MOBILE
+   ============================================================================== */
+.site-header__actions {
+  display: flex;
+  align-items: center;
+}
+
+.menu-toggle {
+  display: none;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-sm);
+  background: #000000;
+  border: 1.5px solid var(--color-gold);
+  color: var(--color-gold);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.menu-toggle:hover {
+  background: #141416;
+  border-color: #ffffff;
+  transform: scale(1.05);
+  box-shadow: 0 0 16px rgba(246, 227, 0, 0.35);
+}
+
+.menu-toggle__icon {
+  width: 22px;
+  height: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu-toggle__icon span {
+  display: block;
+  width: 100%;
+  height: 2.4px;
+  background: var(--color-gold);
+  border-radius: 2px;
+  transition: all var(--transition-normal);
+}
+
+.menu-toggle:hover .menu-toggle__icon span {
+  background: #ffffff;
+}
+
+.menu-toggle[aria-expanded="true"] {
+  background: #000000;
+  border-color: var(--color-gold);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__icon span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__icon span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.menu-toggle[aria-expanded="true"] .menu-toggle__icon span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Backdrop do Menu Mobile */
+.nav-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 1090;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.nav-backdrop.open {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ==============================================================================
+   6. RESPONSIVIDADE DO HEADER (Mobile Drawer)
+   ============================================================================== */
+@media (max-width: 991px) {
+  .site-header {
+    z-index: 1100;
+  }
+
+  .site-header.scrolled {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(88vw, 360px);
+    max-width: 100vw;
+    box-sizing: border-box;
+    height: 100vh;
+    height: 100dvh;
+    background: var(--color-gold);
+    color: #000000;
+    border-left: 3px solid #000000;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.45);
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 24px 20px;
+    gap: 8px;
+    z-index: 1105;
+    transform: translateX(100%);
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1), visibility 350ms;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-menu.open {
+    transform: translateX(0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .nav-menu__mobile-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000000;
+    margin: -24px -20px 16px -20px;
+    padding: 18px 20px 16px 20px;
+    border-bottom: 2px solid var(--color-gold);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  .brand--drawer {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-menu__close-btn {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #141416;
+    border: 1.5px solid var(--color-gold);
+    color: var(--color-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .nav-menu__close-btn:hover {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: #000000;
+    transform: translateY(-50%) scale(1.08);
+  }
+
+  .nav-menu__group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .nav-menu__link {
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: #000000;
+    padding: 14px 16px;
+    border-radius: var(--radius-sm);
+    justify-content: flex-start;
+    background: transparent;
+    transition: all var(--transition-fast);
+  }
+
+  .nav-menu__link:hover,
+  .nav-menu__link.active {
+    background: #000000;
+    color: var(--color-gold);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    transform: none;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .site-header__actions {
+    display: flex;
+    margin-left: auto;
+    z-index: 15;
+  }
+}
+
+@media (min-width: 992px) {
+  .site-header__actions {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .trending-bar__label-desktop {
+    display: none;
+  }
+
+  .trending-bar__label-mobile {
+    display: inline;
+  }
+}
+
+@media (max-width: 540px) {
+  .trending-bar__inner {
+    gap: 10px;
+  }
+
+  .trending-bar__label {
+    font-size: 0.72rem;
+  }
+
+  .site-header__inner {
+    height: 89px;
+  }
+
+  .brand__logo-img {
+    height: 66px;
+  }
+}

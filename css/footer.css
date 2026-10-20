@@ -1,0 +1,330 @@
+/* ==============================================================================
+   GALETO & PICANHA - FOOTER (Referência Casa 137)
+   Rodapé com 4 colunas estruturadas, redes sociais, horários, endereço e SEO
+   ============================================================================== */
+
+.site-footer {
+  background: #090a0c;
+  color: #ffffff;
+  padding-top: clamp(3.5rem, 6vw, 5rem);
+  border-top: 1px solid var(--color-border);
+  position: relative;
+  z-index: 10;
+}
+
+.site-footer__top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.3fr;
+  gap: clamp(32px, 5vw, 56px);
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+/* Coluna 1: Marca & Redes */
+.footer-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  text-decoration: none;
+  width: 100%;
+}
+
+.footer-brand__logo-wrap {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #252830 0%, #15161a 100%);
+  border: 2px solid var(--color-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  flex-shrink: 0;
+  box-shadow: 0 0 16px rgba(246, 227, 0, 0.25);
+  transition: transform var(--transition-normal);
+}
+
+.footer-brand:hover .footer-brand__logo-wrap {
+  transform: scale(1.06);
+}
+
+.footer-brand__logo {
+  height: 72px;
+  width: auto;
+  max-width: 170px;
+  display: block;
+  margin: 0 auto;
+  object-fit: contain;
+  transition: transform var(--transition-normal);
+}
+
+.footer-brand:hover .footer-brand__logo {
+  transform: scale(1.05);
+}
+
+.footer-brand__name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+}
+
+.footer-brand__name span {
+  color: var(--color-gold);
+}
+
+.footer-brand__tagline {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-desc {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  margin-bottom: 22px;
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 0.86rem;
+  font-weight: 500;
+  transition: all var(--transition-normal);
+}
+
+.social-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border-color: var(--color-gold);
+  transform: translateY(-2px);
+}
+
+.social-btn svg {
+  width: 16px;
+  height: 16px;
+  color: var(--color-gold);
+}
+
+/* Títulos das Colunas */
+.footer-col__title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.footer-col__title::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: var(--color-gold);
+  border-radius: 2px;
+}
+
+/* Links do Rodapé */
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-links a,
+.footer-links button,
+.footer-link-btn {
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.footer-links a:hover,
+.footer-links button:hover,
+.footer-link-btn:hover {
+  color: var(--color-gold);
+  transform: translateX(4px);
+}
+
+/* Informações de Contato do Footer */
+.footer-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.92rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.footer-contact-item svg {
+  color: var(--color-gold);
+  margin-top: 3px;
+  flex-shrink: 0;
+}
+
+.footer-contact-item strong {
+  color: #ffffff;
+}
+
+/* Bottom Bar */
+.site-footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-block: 22px;
+  font-size: 0.85rem;
+  color: var(--color-text-dim);
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.site-footer__bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  max-width: 100%;
+}
+
+.footer-bottom-links a:hover {
+  color: var(--color-gold);
+}
+
+/* Responsividade do Footer */
+@media (max-width: 991px) {
+  .site-footer__top {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-col--brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-socials {
+    justify-content: center;
+  }
+
+  .site-footer__bottom {
+    padding-bottom: 95px; /* Espaço amplo para não sobrepor botões flutuantes (WhatsApp & Top) */
+  }
+
+  .site-footer__bottom-inner {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .site-footer__copyright {
+    text-align: center;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    width: 100%;
+    max-width: 100%;
+    color: var(--color-text-dim);
+  }
+
+  .site-footer__copyright p {
+    margin: 0 0 4px 0;
+  }
+
+  .footer-bottom-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .footer-bottom-links span {
+    display: none;
+  }
+
+  .footer-bottom-links a,
+  .footer-bottom-links button {
+    display: inline-block;
+    padding: 3px 8px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+}
+
+@media (max-width: 580px) {
+  .site-footer__top {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    text-align: center;
+  }
+
+  .footer-col__title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .footer-links {
+    align-items: center;
+  }
+
+  .footer-contact-list {
+    align-items: center;
+  }
+}

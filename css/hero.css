@@ -1,0 +1,410 @@
+/* ==============================================================================
+   GALETO & PICANHA - HERO (vídeo limpo em tela cheia, referência Casa 137)
+   Sem textos, botões ou filtros sobre o vídeo. Apenas controles discretos de mídia.
+   ============================================================================== */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 124px);
+  height: calc(100dvh - 124px);
+  min-height: 420px;
+  overflow: hidden;
+  background-color: #000000;
+  border-bottom: 4px solid var(--color-primary);
+}
+
+.hero__bg-video-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Filtro degradê suave no topo para transição perfeita com a navbar preta */
+.hero__bg-video-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.85) 25%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero__bg-video {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 50px);
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.hero__bg-controls {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.video-control-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+}
+
+.video-control-btn:hover {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: #000000;
+  transform: scale(1.08);
+}
+
+.video-control-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 991px) {
+  .hero {
+    height: calc(100vh - 78px);
+    height: calc(100dvh - 78px);
+  }
+
+  .hero__event-floating {
+    display: none !important;
+  }
+
+  .events-mobile-section {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 50vh;
+    height: 50dvh;
+    min-height: 260px;
+  }
+
+  .hero__bg-video-wrap::after {
+    height: 110px;
+  }
+
+  .hero__bg-controls {
+    bottom: 16px;
+    left: 16px;
+  }
+}
+
+/* ==============================================================================
+   CARD FLUTUANTE DE EVENTOS NO HERO (Desktop) & SESSÃO MOBILE
+   ============================================================================== */
+
+/* Modal / Card Flutuante no Canto Direito sobre o Vídeo do Hero (Desktop) */
+.hero__event-floating {
+  position: absolute;
+  top: 24px;
+  bottom: auto;
+  height: auto;
+  max-height: calc(100% - 48px);
+  right: 28px;
+  z-index: 25;
+  width: clamp(280px, 24vw, 360px);
+  max-width: calc(100% - 56px);
+  background: rgba(12, 12, 14, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(246, 227, 0, 0.45);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 35px rgba(246, 227, 0, 0.16);
+  color: #ffffff;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: floatCardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes floatCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero__event-floating.minimized {
+  bottom: auto;
+  height: auto !important;
+  width: auto;
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.95);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+}
+
+.hero__event-floating.minimized .event-card__banner,
+.hero__event-floating.minimized .event-card__body,
+.hero__event-floating.minimized .event-card__footer {
+  display: none !important;
+}
+
+.hero__event-floating.minimized .event-card__header {
+  padding: 8px 16px;
+  border-bottom: none;
+  cursor: pointer;
+}
+
+/* Estrutura interna do card de evento */
+.event-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.event-card__badge-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-gold);
+}
+
+.event-card__badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  animation: pulse-dot 2s infinite;
+}
+
+.event-card__close-btn {
+  background: transparent;
+  border: none;
+  color: #a9abb2;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.event-card__close-btn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Slot de Imagem / Banner do Evento (Sempre proporção 1:1 com preenchimento total) */
+.event-card__banner {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #000000;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.event-card__banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.hero__event-floating:hover .event-card__banner-img {
+  transform: scale(1.05);
+}
+
+.event-card__banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 0%, rgba(12, 12, 14, 0.35) 60%, rgba(12, 12, 14, 0.95) 100%);
+  pointer-events: none;
+}
+
+.event-card__banner .event-card__date-pill {
+  position: absolute;
+  bottom: 12px;
+  left: 16px;
+  margin-bottom: 0;
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.event-card__body {
+  padding: 16px 20px;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-card__body::-webkit-scrollbar {
+  width: 4px;
+}
+.event-card__body::-webkit-scrollbar-thumb {
+  background: rgba(246, 227, 0, 0.25);
+  border-radius: 999px;
+}
+
+.event-card__date-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #000000;
+  background: var(--color-gold);
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+.event-card__title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+
+.event-card__sub {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  margin-bottom: 8px;
+}
+
+.event-card__desc {
+  font-size: 0.86rem;
+  color: #d9d9de;
+  line-height: 1.48;
+  margin-bottom: 8px;
+}
+
+.event-card__footer {
+  padding: 14px 20px;
+  background: rgba(0, 0, 0, 0.35);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.event-card__btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #25d366;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.92rem;
+  padding: 12px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  border: none;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
+  transition: all var(--transition-fast);
+}
+
+.event-card__btn:hover {
+  background: #1ebd5d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(37, 211, 102, 0.55);
+}
+
+/* ==============================================================================
+   SESSÃO DE EVENTOS MOBILE (Logo abaixo do vídeo)
+   ============================================================================== */
+.events-mobile-section {
+  display: none;
+  background: #0d0d0e;
+  border-bottom: 2px solid rgba(246, 227, 0, 0.22);
+  padding: 28px 0 32px;
+}
+
+.events-mobile__header {
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.events-mobile__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.events-mobile__title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.events-mobile__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.events-mobile__card {
+  background: #141416;
+  border: 1px solid rgba(246, 227, 0, 0.3);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.events-mobile__banner {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  background: #000000;
+}
+
+.events-mobile__banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}

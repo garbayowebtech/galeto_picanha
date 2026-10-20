@@ -1,0 +1,405 @@
+/* ==============================================================================
+   GALETO & PICANHA - TEMAS DE SEÇÃO (alto contraste, paleta oficial)
+   Amarelo #F6E300 | Vermelho #E30121 | Branco #FFFFFF | Preto #000000 | Cinza #797B84
+   Ritmo das seções: HERO > BRANCO > PRETO > BRANCO > PRETO > AMARELO > BRANCO > PRETO > RODAPÉ
+   ============================================================================== */
+
+/* ---------- Base das variantes ---------- */
+.section--dark   { background: #000000; color: #ffffff; }
+.section--light  { background: #ffffff; color: #000000; }
+.section--yellow {
+  background: var(--color-gold);
+  color: #000000;
+  border-block: 4px solid #000000;
+  overflow: hidden;
+}
+
+/* Badges sólidos (legíveis sobre fotos e fundos claros/escuros) */
+.badge--red       { background: var(--color-primary); color: #ffffff; }
+.badge--gold      { background: var(--color-gold); color: #000000; }
+.badge--soft-gold { background: #000000; color: var(--color-gold); border: 1px solid var(--color-gold); }
+.badge--green     { background: #ffffff; color: #000000; border: 1px solid #000000; }
+
+/* ==============================================================================
+   SEÇÕES CLARAS (fundo branco, texto preto, acentos vermelho/amarelo)
+   ============================================================================== */
+.section--light .section-tag {
+  background: #000000;
+  color: var(--color-gold);
+  border-color: #000000;
+}
+
+.section--light .section-tag--red {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+.section--light .section-title { color: #000000; }
+
+.section--light .section-title span.highlight-gold,
+.section--light .section-title span.highlight-red {
+  color: var(--color-primary);
+  text-shadow: none;
+}
+
+.section--light .section-subtitle { color: #25262b; }
+
+/* Diferenciais */
+.section--light .diff-card {
+  background: #ffffff;
+  border: 2px solid #000000;
+  box-shadow: 6px 6px 0 #000000;
+}
+
+.section--light .diff-card:hover {
+  background: #ffffff;
+  border-color: #000000;
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--color-primary);
+}
+
+.section--light .diff-card::before { opacity: 1; height: 5px; }
+
+.section--light .diff-card__icon {
+  background: var(--color-gold);
+  border: 2px solid #000000;
+  color: #000000;
+}
+
+.section--light .diff-card:hover .diff-card__icon {
+  background: var(--color-primary);
+  border-color: #000000;
+  color: #ffffff;
+}
+
+.section--light .diff-card__title { color: #000000; }
+.section--light .diff-card__desc  { color: #25262b; }
+
+/* Cardápio */
+.section--light .cardapio-search-input {
+  background: #ffffff;
+  border: 2px solid #000000;
+  color: #000000;
+}
+
+.section--light .cardapio-search-input::placeholder { color: #55565d; }
+
+.section--light .cardapio-search-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(227, 1, 33, 0.18);
+}
+
+.section--light .cardapio-search-icon { color: #000000; }
+
+.section--light .tab-btn {
+  background: #ffffff;
+  border: 2px solid #000000;
+  color: #000000;
+}
+
+.section--light .tab-btn:hover {
+  background: var(--color-gold);
+  border-color: #000000;
+  color: #000000;
+}
+
+.section--light .tab-btn.active,
+.section--light .tab-btn.active:hover {
+  background: var(--color-primary);
+  border-color: #000000;
+  color: #ffffff;
+  box-shadow: 3px 3px 0 #000000;
+}
+
+.section--light .dish-card {
+  background: #ffffff;
+  border: 2px solid #000000;
+  box-shadow: 5px 5px 0 #000000;
+}
+
+.section--light .dish-card:hover {
+  background: #ffffff;
+  border-color: #000000;
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 var(--color-primary);
+}
+
+.section--light .dish-card__img-wrap { border-bottom: 2px solid #000000; }
+
+.section--light .dish-card__serves {
+  background: #000000;
+  color: #ffffff;
+  border: 1px solid #000000;
+}
+
+.section--light .dish-card__title { color: #000000; }
+.section--light .dish-card__desc  { color: #25262b; }
+
+.section--light .dish-card__acomp {
+  background: #f3f3f4;
+  border-left: 4px solid var(--color-primary);
+  color: #25262b;
+}
+
+.section--light .dish-card__acomp strong { color: #000000; }
+
+.section--light .dish-card__footer { border-top: 2px solid #000000; }
+.section--light .dish-card__price-label { color: #55565d; }
+.section--light .dish-card__price { color: var(--color-primary); }
+
+.section--light .cardapio-empty {
+  background: #ffffff;
+  border: 2px dashed #000000;
+}
+
+.section--light .cardapio-empty svg { color: var(--color-primary); }
+.section--light .cardapio-empty h3  { color: #000000; }
+.section--light .cardapio-empty p   { color: #25262b; }
+
+/* Banner de pedido (fundo preto dentro da seção clara) */
+.cardapio-banner {
+  margin-top: 50px;
+  text-align: center;
+  background: #000000;
+  border-top: 6px solid var(--color-primary);
+  padding: 34px 22px;
+  border-radius: var(--radius-lg);
+  box-shadow: 6px 6px 0 var(--color-gold);
+}
+
+.cardapio-banner__title {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.cardapio-banner__text {
+  color: #e6e6ea;
+  max-width: 650px;
+  margin-inline: auto;
+  margin-bottom: 22px;
+}
+
+/* FAQ */
+.section--light .faq-item {
+  background: #ffffff;
+  border: 2px solid #000000;
+}
+
+.section--light .faq-item.active {
+  border-color: var(--color-primary);
+  box-shadow: 5px 5px 0 var(--color-primary);
+}
+
+.section--light .faq-question { color: #000000; }
+.section--light .faq-question:hover { color: var(--color-primary); }
+
+.section--light .faq-icon {
+  background: #000000;
+  color: var(--color-gold);
+}
+
+.section--light .faq-item.active .faq-icon {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.section--light .faq-answer p { color: #25262b; }
+
+/* ==============================================================================
+   SEÇÕES ESCURAS (preto puro, texto branco, acentos amarelo/vermelho)
+   ============================================================================== */
+.section--dark .section-title { color: #ffffff; }
+.section--dark .section-subtitle { color: #e6e6ea; }
+
+/* Sobre */
+.section--dark .sobre__text { color: #e6e6ea; }
+.section--dark .sobre__text strong { color: var(--color-gold); }
+
+.section--dark .highlight-box {
+  background: #111111;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.section--dark .highlight-box__icon {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.section--dark .highlight-box__text strong { color: #ffffff; }
+.section--dark .highlight-box__text span   { color: #d9d9de; }
+
+.section--dark .sobre__img-main {
+  border: 3px solid var(--color-gold);
+  box-shadow: 14px 14px 0 var(--color-primary);
+}
+
+.section--dark .sobre__floating-card {
+  background: #000000;
+  border: 2px solid var(--color-gold);
+}
+
+.section--dark .floating-badge-text span { color: #d9d9de; }
+
+/* Galeria */
+.section--dark .galeria-item {
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background: #111111;
+}
+
+.section--dark .galeria-item:hover { border-color: var(--color-gold); }
+
+.section--dark .galeria-item__overlay {
+  background: linear-gradient(180deg, transparent 35%, rgba(0, 0, 0, 0.95) 100%);
+}
+
+/* Contato / Como chegar */
+.section--dark .contato-info-card {
+  background: #111111;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.section--dark .contato-icon {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: #000000;
+}
+
+.section--dark .contato-details strong { color: #ffffff; }
+.section--dark .contato-details p,
+.section--dark .contato-details a { color: #e6e6ea; }
+.section--dark .contato-details a:hover { color: var(--color-gold); }
+
+.section--dark .map-wrapper {
+  border: 3px solid var(--color-gold);
+  box-shadow: 8px 8px 0 var(--color-primary);
+}
+
+/* ==============================================================================
+   SEÇÃO AMARELA (Reservas & Pedidos)
+   ============================================================================== */
+.section--yellow .section-tag {
+  background: #000000;
+  color: var(--color-gold);
+  border-color: #000000;
+}
+
+.section--yellow .section-tag--red,
+#reservas .section-tag--red {
+  background: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  align-self: center;
+  margin-inline: auto;
+}
+
+.section--yellow .section-title { color: #000000; }
+
+.section--yellow .section-title span.highlight-gold,
+.section--yellow .section-title span.highlight-red {
+  color: var(--color-primary);
+  text-shadow: none;
+}
+
+.section--yellow .reservas__desc { color: #111111; font-weight: 500; }
+.section--yellow .benefit-item   { color: #000000; font-weight: 600; }
+.section--yellow .benefit-item svg { color: #000000; }
+
+.contact-fast__label {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #111111;
+}
+
+.contact-fast__phone {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 4px;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #000000;
+}
+
+.contact-fast__phone svg { color: var(--color-primary); }
+
+.section--yellow .reservas__card {
+  background: #000000;
+  border: 3px solid #000000;
+  box-shadow: 10px 10px 0 var(--color-primary);
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .section--yellow .reservas__card {
+    box-shadow: 4px 4px 0 var(--color-primary);
+    padding: 20px 14px;
+    border-width: 2px;
+    max-width: 100%;
+  }
+
+  .section--yellow .section-title {
+    font-size: clamp(1.6rem, 5vw, 2.1rem);
+    line-height: 1.25;
+    word-break: break-word;
+  }
+}
+
+.section--yellow .form-label { color: #ffffff; }
+
+.section--yellow .form-input,
+.section--yellow .form-select,
+.section--yellow .form-textarea {
+  background: #1a1a1a;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+.section--yellow .form-input::placeholder,
+.section--yellow .form-textarea::placeholder { color: #a9abb2; }
+
+.section--yellow .form-input:focus,
+.section--yellow .form-select:focus,
+.section--yellow .form-textarea:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 4px rgba(246, 227, 0, 0.25);
+}
+
+/* ==============================================================================
+   RODAPÉ (preto, linha superior amarela)
+   ============================================================================== */
+.site-footer {
+  background: #000000;
+  border-top: 6px solid var(--color-gold);
+}
+
+.footer-desc,
+.footer-links a,
+.footer-contact-item,
+.footer-brand__tagline { color: #e6e6ea; }
+
+.footer-links a:hover { color: var(--color-gold); }
+.footer-contact-item strong { color: #ffffff; }
+
+.social-btn {
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+.site-footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: #c9cad0;
+}
+
+/* Logo direta no rodapé (sem moldura) */
+.footer-brand__logo {
+  height: 72px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}

@@ -5,7 +5,8 @@
   "main": "index.html",
   "scripts": {
     "start": "serve .",
-    "build": "echo 'Build completed. Static files served directly from repository.'"
+    "build": "echo 'Build completed. Static files served directly from repository.'",
+    "test": "python tests/run_tests.py"
   },
   "repository": {
     "type": "git",
